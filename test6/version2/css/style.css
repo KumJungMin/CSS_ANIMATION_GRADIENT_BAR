@@ -1,0 +1,100 @@
+.skill-progress{
+    width: 500px;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    color : #fff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.089);
+
+    /* 해당요소를 수직,수평중앙정렬 */
+    position: absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+}
+
+.skill-progress h1{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.item p{
+    /* p의 자식은 span이 float값을 가지면, 부모인 p태그는 높이값을 잃어버림
+    그래서 p태그에 overflow:hidden을 하면 원래 높이값을 찾아감
+    */
+    overflow: hidden;
+    /* p태그 자체가 차지하는 마진을 없애기 */
+    margin-bottom : 0;
+
+}
+
+
+/* item에 마우스 올리면 커지게 함 */
+.item {
+    transition: 0.4s;
+
+}
+.item:hover {
+    border-radius: 3px;
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.753);
+    transform: scale(1.05);
+}
+
+
+/* p태그안에 있는 span을 왼쪽, 오른쪽 정렬을 시켜야함 */
+.item p span:nth-child(1){  /*span:first-child*/
+    float : left;
+    /* p의 자식은 span이 float값을 가지면, 부모인 p태그는 높이값을 잃어버림
+    그래서 p태그에 overflow:hidden을 하면 원래 높이값을 찾아감
+    */
+
+}
+.item p span:nth-child(2){ /*span:end-child*/
+    float: right;
+
+}
+
+.progress{
+    border : 1px solid #6cd4c4;
+    padding : 5px;
+    border-radius: 3px;
+}
+
+/* 그라데이션 막대 */
+.progress-level{
+    height: 10px;
+    background : linear-gradient(to right, pink, gold); /*방향(deg각도도 가능), 시작색상, 종료색상*/
+    animation: ani;
+    animation-duration: 1s;  /*1초만에 발생한 애니메이션이 끝나게 함*/
+    animation-fill-mode: both; 
+    /*애니메이션이 반복이 끝나면 -> 무조건 keyframe에서 100%구간에 머무르게 해라
+    애니메이션은 기본적으로, 0%->100%->0%로 진행됨 근데, 저렇게 진행되면 100%구간에서 멈추지 않고 부자연스러움
+    100%구간에서 멈추게 해서 로딩 후, 바로 꽉찬 막대를 만들기 위해 fill-mode를 사용
+    */
+}
+
+/* 처음 로드될 때, 그라데이션바들이 서서히 차오르는 애니메이션 주기 */
+@keyframes ani{
+    0%{
+        width: 0;   /*시작할 때만 width가 0이게만 하면 됨*/
+    }
+}
+
+/* skill-progress안에 있는 item요소안의 것들에 접근함 */
+/* .skill-progress의 자식인 첫번째 item의 -> item안에 있는 progress-level에 애니메이션을 준다. 
+item:nth-child(1)은 같은 레벨에서 처음 로드되는 걸 1로 보기 때문에, 같은 레벨에 있는 h1을 1로 봄
+이런 경우 순서대로 그라데이션바가 움직이지 않음
+그래서 nth-of-type를 하면 처음 로드되면서, class가 item인 것을 1로 보게 할 수 있음
+*/
+.skill-progress .item:nth-of-type(1) .progress-level{
+    animation-delay: 0s;
+}
+.skill-progress .item:nth-of-type(2) .progress-level{
+    animation-delay: 0.2s;
+}
+.skill-progress .item:nth-of-type(3) .progress-level{
+    animation-delay: 0.4s;
+}
+.skill-progress .item:nth-of-type(4) .progress-level{
+    animation-delay: 0.6s;
+}

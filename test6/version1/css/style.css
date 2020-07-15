@@ -1,0 +1,79 @@
+.skill-progress{
+    width: 500px;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    color : #fff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.089);
+
+    /* 해당요소를 수직,수평중앙정렬 */
+    position: absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+}
+
+.skill-progress h1{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* item에 마우스 올리면 커지게 함 */
+.item {
+    transition: 0.4s;
+
+}
+.item:hover {
+    border-radius: 3px;
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.753);
+    transform: scale(1.05);
+}
+
+
+
+.item p{
+    /* p의 자식은 span이 float값을 가지면, 부모인 p태그는 높이값을 잃어버림
+    그래서 p태그에 overflow:hidden을 하면 원래 높이값을 찾아감
+    */
+    overflow: hidden;
+    /* p태그 자체가 차지하는 마진을 없애기 */
+    margin-bottom : 0;
+
+}
+
+/* p태그안에 있는 span을 왼쪽, 오른쪽 정렬을 시켜야함 */
+.item p span:nth-child(1){  /*span:first-child*/
+    float : left;
+    /* p의 자식은 span이 float값을 가지면, 부모인 p태그는 높이값을 잃어버림
+    그래서 p태그에 overflow:hidden을 하면 원래 높이값을 찾아감
+    */
+
+}
+.item p span:nth-child(2){ /*span:end-child*/
+    float: right;
+
+}
+
+.progress{
+    border : 1px solid #6cd4c4;
+    padding : 5px;
+    border-radius: 3px;
+}
+
+
+
+/* 그라데이션 막대 */
+.progress-level{
+    height: 10px;
+    background : linear-gradient(to right, pink, gold); /*방향(deg각도도 가능), 시작색상, 종료색상*/
+    animation: ani;
+    animation-duration: 1s;  /*1초만에 발생한 애니메이션이 끝나게 함*/
+}
+
+
+/* 처음 로드될 때, 그라데이션바들이 서서히 차오르는 애니메이션 주기 */
+@keyframes ani{
+    0%{
+        width: 0;   /*시작할 때만 width가 0이게만 하면 됨*/
+    }
+}
